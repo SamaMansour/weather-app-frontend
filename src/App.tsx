@@ -4,12 +4,14 @@ import Home from './layouts/Home/Home';
 import Signup from './layouts/Signup/Signup';
 import Login from './layouts/Login/Login';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from './components/Navbar/Navbar';
 
 
 
 function App() {
   return (
     <div className="App">
+      <Navbar/>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />

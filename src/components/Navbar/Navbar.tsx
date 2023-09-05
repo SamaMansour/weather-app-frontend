@@ -1,11 +1,59 @@
-import React from 'react'
+import React, { useState } from "react";
+import {
+  Box,
+  Flex,
+  Link,
+  Spacer,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Input,
+  FormControl,
+  FormLabel,
+} from "@chakra-ui/react";
 
-const Navbar = () => {
+
+function Navbar() {
+  
+  const [currentUser, setCurrentUser] = useState(null); // to store the logged-in user
+
+  
   return (
-    <div>
-      
-    </div>
-  )
+    <Box bg="#000000" px={4} py={2} color="white">
+      <Flex alignItems="center">
+        <Link href="/" fontWeight="bold" fontSize="lg">
+          Weather App
+        </Link>
+        <Spacer />
+        <Link href="/about" mx={2}>
+          About
+        </Link>
+        <Link href="/contact" mx={2}>
+          Contact
+        </Link>
+        {currentUser ? (
+          <>
+            <Box>Welcome, {currentUser}</Box>
+            {/* You can also add a "Logout" button to handle user logout */}
+          </>
+        ) : (
+        <>
+        <Button colorScheme="teal" variant="ghost" mx={2} >
+          Login
+        </Button>
+        <Button colorScheme="teal" variant="ghost" mx={2}>
+          Signup
+        </Button>
+        </>
+        )}
+      </Flex>
+    </Box>
+  );
 }
 
-export default Navbar
+export default Navbar;

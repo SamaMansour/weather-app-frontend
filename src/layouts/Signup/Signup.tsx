@@ -19,9 +19,11 @@ const Signup = () => {
       <FormControl id="password">
         <Input type="password" placeholder="Password" w="497px" h="54px"  /> 
       </FormControl>
-      <Button type="submit" bgColor="#000000" p="2" w="136px" h="54px" color="#FFFFFF" textAlign="left" > 
-        Signup
-      </Button>
+      <Stack direction="row" alignItems="right" style={{position:"relative", left:"122%"}}>
+          <Button type="submit" bgColor="#000000" p="2" w="136px" h="54px" color="#FFFFFF" textAlign="left">
+            Signup
+          </Button>
+        </Stack>
     </Stack>
   </Box>
   );
