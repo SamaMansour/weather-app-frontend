@@ -14,13 +14,13 @@ const Login = () => {
           Login
         </Text>
         <FormControl id="username">
-          <Input type="text" placeholder="Username" w="497px" h="54px" />
+          <Input type="text" placeholder="Username" w="497px" h="54px" borderRadius="0" />
         </FormControl>
         <FormControl id="password">
-          <Input type="password" placeholder="Password" w="497px" h="54px"  /> 
+          <Input type="password" placeholder="Password" w="497px" h="54px" borderRadius="0" /> 
         </FormControl>
         <Stack direction="row" alignItems="right" style={{position:"relative", left:"122%"}}>
-          <Button type="submit" bgColor="#000000" p="2" w="136px" h="54px" color="#FFFFFF" textAlign="left">
+          <Button type="submit" bgColor="#000000" p="2" w="136px" h="54px" color="#FFFFFF" textAlign="left" borderRadius="0">
             Login
           </Button>
         </Stack>

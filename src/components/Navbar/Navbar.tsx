@@ -43,12 +43,12 @@ function Navbar() {
           </>
         ) : (
         <>
-        <Button colorScheme="teal" variant="ghost" mx={2} >
+        <Link href="/login" mx={2}>
           Login
-        </Button>
-        <Button colorScheme="teal" variant="ghost" mx={2}>
+        </Link>
+        <Link href="/signup" mx={2}>
           Signup
-        </Button>
+        </Link>
         </>
         )}
       </Flex>
