@@ -1,35 +1,38 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
-import { FETCH_WEATHER_REQUEST, FETCH_WEATHER_SUCCESS, FETCH_WEATHER_FAILURE } from '../types/weatherTypes';
+import { ThunkAction } from 'redux-thunk';
+import { RootState } from '../reducers/authReducer';
+export const FETCH_WEATHER_SUCCESS = 'FETCH_WEATHER_SUCCESS';
 
-export const fetchWeather = (city: string) => (dispatch: Dispatch) => {
-  dispatch(fetchWeatherRequest());
-  
-  axios.get(`http://localhost:9000?city=${city}`)
-    .then(response => {
-      dispatch(fetchWeatherSuccess(response.data));
-    })
-    .catch(error => {
-      dispatch(fetchWeatherFailure(error.message));
-    });
-};
+interface FetchWeatherSuccessAction {
+  type: typeof FETCH_WEATHER_SUCCESS;
+  payload: WeatherData;
+}
 
-const fetchWeatherRequest = () => {
-  return {
-    type: FETCH_WEATHER_REQUEST
-  };
-};
+export type WeatherActionTypes = FetchWeatherSuccessAction;
 
-const fetchWeatherSuccess = (weather: any) => {
-  return {
-    type: FETCH_WEATHER_SUCCESS,
-    payload: weather
-  };
-};
+export interface WeatherData {
+  // Define your weather data properties here
+  temperature: number;
+  description: string;
+  // Add more properties as needed
+}
 
-const fetchWeatherFailure = (error: string) => {
-  return {
-    type: FETCH_WEATHER_FAILURE,
-    payload: error
-  };
+export const fetchWeatherSuccess = (weatherData: WeatherData): FetchWeatherSuccessAction => ({
+  type: FETCH_WEATHER_SUCCESS,
+  payload: weatherData,
+});
+
+// Async action for fetching weather
+export const fetchWeather = (
+  location: string
+): ThunkAction<void, RootState, null, WeatherActionTypes> => async (dispatch: Dispatch) => {
+  try {
+    // Perform API request and get weatherData
+    const response = await axios.get<WeatherData>(`https://localhost:9000/weather/${location}`);
+    dispatch(fetchWeatherSuccess(response.data));
+  } catch (error) {
+    // Handle weather data fetch error
+    console.error('Error fetching weather data:', error);
+  }
 };

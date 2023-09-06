@@ -1,23 +1,14 @@
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
-import authReducer from './reducers/authReducer';
-import weatherReducer from './reducers/WeatherReducer';
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-  }
-}
+// store.ts
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+import { createStore, combineReducers, applyMiddleware, Store } from 'redux';
+import thunk from 'redux-thunk';
+import { AuthState } from './reducers/authReducer';
+import authReducer from './reducers/authReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  weather: weatherReducer
 });
 
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
-);
+const store: Store<{ auth: AuthState }> = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;
