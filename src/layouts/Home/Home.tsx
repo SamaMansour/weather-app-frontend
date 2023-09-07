@@ -15,13 +15,14 @@ const Home: React.FC = () => {
 
         if (response.ok) {
           // Extract weather data from the API response
-          console.log("api", data)
+          console.log("api", data);
+          const temperatureInCelsius = ((data.data.main.temp - 32) * 5/9).toFixed(1); // Convert and round to 1 decimal place
           const weatherInfo: WeatherData = {
             city: data.data.name,
             day: new Date().toDateString(),
             forecast: data.data.weather[0].description,
             time: new Date().toLocaleTimeString(),
-            temperature: (data.data.main.temp- 32) * 5/9 ,
+            temperature: parseFloat(temperatureInCelsius), // Parse the rounded temperature as a float
             iconUrl: `https://openweathermap.org/img/w/${data.data.weather[0].icon}.png`,
           };
 
