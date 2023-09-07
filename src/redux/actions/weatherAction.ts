@@ -29,7 +29,7 @@ export const fetchWeather = (
 ): ThunkAction<void, RootState, null, WeatherActionTypes> => async (dispatch: Dispatch) => {
   try {
     // Perform API request and get weatherData
-    const response = await axios.get<WeatherData>(`https://localhost:9000/weather/${location}`);
+    const response = await axios.get<WeatherData>(`http://localhost:9000/weather/${location}`);
     dispatch(fetchWeatherSuccess(response.data));
   } catch (error) {
     // Handle weather data fetch error

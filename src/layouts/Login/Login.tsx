@@ -4,8 +4,10 @@ import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { login } from '../../redux/actions/authAction';
+import { useNavigate } from 'react-router-dom';
 const Login: React.FC = () => {
   const dispatch: ThunkDispatch<any, any, AnyAction> = useDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     username: '',
@@ -15,6 +17,7 @@ const Login: React.FC = () => {
   const handleSignup = () => {
     console.log(formData);
     dispatch(login(formData));
+    navigate("/")
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

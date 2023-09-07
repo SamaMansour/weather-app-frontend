@@ -44,7 +44,7 @@ function Navbar() {
           </>
         ) : (
         <>
-        <Link href="/login" mx={2}>
+        <Link href="/login" mx={2}>ut 
           Login
         </Link>
         <Link href="/signup" mx={2}>
