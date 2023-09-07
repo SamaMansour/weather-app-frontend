@@ -50,7 +50,9 @@ export const signup = (
   userData: any
 ): ThunkAction<void, RootState, null, AuthActionTypes> => async (dispatch: Dispatch) => {
   try {
-    const response = await axios.post<User>('http://localhost:9000/auth/signup', userData);
+    const response = await axios.post<User>('https://1e8d-149-200-253-224.ngrok-free.app/auth/signup', userData, {
+      withCredentials: true, // Include credentials in the request
+    });
     dispatch(signupSuccess(response.data));
   } catch (error) {
     // Handle signup error
@@ -62,8 +64,11 @@ export const login = (
   userData: any
 ): ThunkAction<void, RootState, null, AuthActionTypes> => async (dispatch: Dispatch) => {
   try {
-    const response = await axios.post<User>('http://localhost:9000/auth/login', userData);
+    const response = await axios.post<User>('https://1e8d-149-200-253-224.ngrok-free.app/auth/login', userData, {
+      withCredentials: true, // Include credentials in the request
+    });
     dispatch(loginSuccess(response.data));
+    localStorage.setItem("token", response.data.toString());
   } catch (error) {
     // Handle login error
   }

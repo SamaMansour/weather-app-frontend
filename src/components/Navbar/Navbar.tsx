@@ -36,10 +36,11 @@ function Navbar() {
         <Link href="/contact" mx={2}>
           Contact
         </Link>
-        {currentUser ? (
+        {localStorage.getItem("token") != null ? (
           <>
-            <Box>Welcome, {currentUser}</Box>
-            {/* You can also add a "Logout" button to handle user logout */}
+          <Link href="/logout" mx={2}>
+          Logout
+          </Link>
           </>
         ) : (
         <>
